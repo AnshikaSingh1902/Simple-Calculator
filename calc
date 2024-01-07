@@ -1,0 +1,97 @@
+package AwtProjects;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+class MyFrame extends Frame implements ActionListener {
+    Label l1, l2, l3;
+    TextField tf1, tf2, tf3;
+    Button b1, b2, b3, b4, b5;
+
+    public MyFrame() {
+        super("Calculator");
+        setLayout(null);
+
+        l1 = new Label("First Number");
+        tf1 = new TextField(10);
+        l2 = new Label("Second Number");
+        tf2 = new TextField(10);
+        l3 = new Label("Result");
+        tf3 = new TextField(10);
+        b1 = new Button("ADD");
+        b2 = new Button("SUB");
+        b3 = new Button("MUL");
+        b4 = new Button("DIV");
+        b5 = new Button("Cancel");
+
+        l1.setBounds(50, 100, 100, 20);
+        l2.setBounds(50, 140, 100, 20);
+        l3.setBounds(50, 180, 100, 20);
+        tf1.setBounds(200, 100, 100, 20);
+        tf2.setBounds(200, 140, 100, 20);
+        tf3.setBounds(200, 180, 100, 20);
+        b1.setBounds(50, 250, 50, 20);
+        b2.setBounds(110, 250, 50, 20);
+        b3.setBounds(170, 250, 50, 20);
+        b4.setBounds(230, 250, 50, 20);
+        b5.setBounds(290, 250, 50, 20);
+
+        add(l1);
+        add(tf1);
+        add(l2);
+        add(tf2);
+        add(l3);
+        add(tf3);
+        add(b1);
+        add(b2);
+        add(b3);
+        add(b4);
+        add(b5);
+
+        b1.addActionListener(this);
+        b2.addActionListener(this);
+        b3.addActionListener(this);
+        b4.addActionListener(this);
+        b5.addActionListener(this);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        int n1 = Integer.parseInt(tf1.getText());
+        int n2 = Integer.parseInt(tf2.getText());
+
+        // The getSource method is used in the actionPerformed method to determine which
+        // button was clicked.
+        if (e.getSource() == b1) {
+
+            // valueeOf() used to convert any non String variable or Object such as int,
+            // double, char, and others to a newly created String object.
+            tf3.setText(String.valueOf(n1 + n2));
+        }
+
+        if (e.getSource() == b2) {
+            tf3.setText(String.valueOf(n1 - n2));
+        }
+
+        if (e.getSource() == b3) {
+            tf3.setText(String.valueOf(n1 * n2));
+        }
+
+        if (e.getSource() == b4) {
+            tf3.setText(String.valueOf(n1 / n2));
+        }
+        if (e.getSource() == b5) {
+            System.exit(0);
+        }
+    }
+}
+
+public class calc {
+    public static void main(String[] args) {
+        MyFrame f = new MyFrame();
+        f.setVisible(true);
+        f.setSize(400, 350);
+        f.setResizable(false);
+    }
+}
